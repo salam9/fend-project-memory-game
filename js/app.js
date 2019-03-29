@@ -2,6 +2,16 @@
  * Create a list that holds all of your cards
  */
 
+let cards = document.querySelectorAll('.deck .card');
+const cardsArray = [...cards];
+document.querySelector('.deck').innerHTML = '';
+let fragment = document.createDocumentFragment() ;
+
+for (card of shuffle(cardsArray)){
+  fragment.appendChild(card) ;
+}
+
+document.querySelector('.deck').appendChild(fragment);
 
 /*
  * Display the cards on the page
@@ -24,8 +34,41 @@ function shuffle(array) {
 
     return array;
 }
+var openedCards = new Array();
+const dock= document.querySelector('.deck');
+let movesCounter = 0;
 
+window.onload = dock.addEventListener('click', function(){ 
+        clickedCard= event.target;
+        flipCard(clickedCard);
+        openedCards.push(clickedCard);
+        console.log(openedCards.length);
+        if (openedCards.length%2==0){
+            console.log("new comparison")
+            comparison(openedCards);
+            
+        }
+        countMoves();
+})
 
+function flipCard(card) {
+        card.classList.toggle('open');
+        card.classList.toggle('show');
+}
+function comparison(Cards){
+    
+    if (Cards[Cards.length-1].childNodes[1].classList.value==Cards[Cards.length-2].childNodes[1].classList.value){
+        Cards[Cards.length-1].childNodes[1].classList.add('match');
+        Cards[Cards.length-2].childNodes[1].classList.add('match');
+        console.log("match");
+    }
+    else{
+        console.log("not match");
+    }
+}
+function countMoves() {
+    movesCounter++;
+}
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
