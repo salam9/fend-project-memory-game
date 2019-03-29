@@ -39,12 +39,18 @@ const dock= document.querySelector('.deck');
 let movesCounter = 0;
 
 window.onload = dock.addEventListener('click', function(){ 
-        clickedCard= event.target;
-        flipCard(clickedCard);
-        openedCards.push(clickedCard);
-        console.log(openedCards.length);
+        if(event.target.classList.contains('card')){
+            clickedCard=event.target;
+        }
+
+        if(!openedCards.includes(clickedCard)){
+            flipCard(clickedCard);
+            openedCards.push(clickedCard);
+            console.log("openedCards Array Length "+openedCards.length);
+        }
+        
         if (openedCards.length%2==0){
-            console.log("new comparison")
+            console.log("now comparison openedCards Length "+openedCards.length)
             comparison(openedCards);
             
         }
@@ -58,13 +64,24 @@ function flipCard(card) {
 function comparison(Cards){
     
     if (Cards[Cards.length-1].childNodes[1].classList.value==Cards[Cards.length-2].childNodes[1].classList.value){
-        Cards[Cards.length-1].childNodes[1].classList.add('match');
-        Cards[Cards.length-2].childNodes[1].classList.add('match');
+        setTimeout(function () {
+        match(Cards[Cards.length-1]);
+        match(Cards[Cards.length-2]);
         console.log("match");
+        }, 500);
     }
     else{
+        setTimeout(function () {
+        flipCard(Cards[Cards.length-1]);
+        flipCard(Cards[Cards.length-2]);
+        Cards.pop();
+        Cards.pop();
         console.log("not match");
+        }, 500);
     }
+}
+function match(card){
+    card.classList.add('match');
 }
 function countMoves() {
     movesCounter++;
