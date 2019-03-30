@@ -52,6 +52,9 @@ window.onload = dock.addEventListener('click', function(){
         if (openedCards.length%2==0){
             console.log("now comparison openedCards Length "+openedCards.length)
             comparison(openedCards);
+            if(openedCards.length==16){
+                win();
+            }
             
         }
         countMoves();
@@ -83,8 +86,12 @@ function comparison(Cards){
 function match(card){
     card.classList.add('match');
 }
+
 function countMoves() {
     movesCounter++;
+}
+function win(){
+    alert("cogra you win");
 }
 /*
  * set up the event listener for a card. If a card is clicked:
