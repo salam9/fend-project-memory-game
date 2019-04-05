@@ -7,6 +7,8 @@ const cardsArray = [...cards];
 document.querySelector('.deck').innerHTML = '';
 let fragment = document.createDocumentFragment() ;
 
+
+
 for (card of shuffle(cardsArray)){
   fragment.appendChild(card) ;
 }
@@ -36,11 +38,13 @@ function shuffle(array) {
 }
 var openedCards = new Array();
 const dock= document.querySelector('.deck');
-let movesCounter = 0;
+const stars = document.querySelector('.stars');
+
 
 window.onload = dock.addEventListener('click', function(){ 
         if(event.target.classList.contains('card')){
             clickedCard=event.target;
+            countMoves();
         }
 
         if(!openedCards.includes(clickedCard)){
@@ -52,12 +56,12 @@ window.onload = dock.addEventListener('click', function(){
         if (openedCards.length%2==0){
             console.log("now comparison openedCards Length "+openedCards.length)
             comparison(openedCards);
+            ratingRound();
             if(openedCards.length==16){
                 win();
             }
             
         }
-        countMoves();
 })
 
 function flipCard(card) {
@@ -79,6 +83,7 @@ function comparison(Cards){
         flipCard(Cards[Cards.length-2]);
         Cards.pop();
         Cards.pop();
+        incorrectMoves++
         console.log("not match");
         }, 500);
     }
@@ -87,15 +92,73 @@ function match(card){
     card.classList.add('match');
 }
 
+let movesCounter = 0;
+const moves = document.querySelector(".moves");
 function countMoves() {
+    startTimer();
     movesCounter++;
+    moves.textContent = movesCounter === 1 ? `${movesCounter} Move` : `${movesCounter} Moves`;
 }
 function win(){
     if(event.target.classList.contains('card')){
+        stopTimer();
         alert("cogra you win");
     }
     
 }
+
+let incorrectMoves = 0;
+let starsCounter = 3;
+function ratingRound()
+{
+    if(incorrectMoves >= 3 && incorrectMoves <= 9 )
+    {
+        starsCounter--;
+        stars.lastElementChild.firstElementChild.classList.replace('fa-star', 'fa-star-o');
+    }
+    else if (incorrectMoves>= 10)
+    {
+        starsCounter--;
+        stars.children[1].firstElementChild.classList.replace('fa-star', 'fa-star-o');
+    }
+}
+
+const resetButton = document.querySelector('.restart');
+resetButton.addEventListener('click', function () {
+    reloadPage();
+});
+
+function reloadPage() {
+    location.reload();
+    console.log("whole page reloaded");
+}
+
+let timerStarted = false;
+const minutesLabel = document.getElementById("minutes");
+const secondsLabel = document.getElementById("seconds");
+let totalSeconds = 0 , seconds=0, minutes=0;
+
+function setTime()
+{
+    ++totalSeconds;
+    seconds= totalSeconds%60;
+    minutes= parseInt(totalSeconds/60);
+    secondsLabel.innerHTML = seconds.toString().padStart(2,"0"); 
+    minutesLabel.innerHTML = minutes.toString().padStart(2,"0");
+}
+
+function startTimer() {
+    if (!timerStarted) {
+        timerStarted = true;
+        timerInterval = setInterval(setTime, 1000);
+    }
+}
+
+function stopTimer() {
+    timerStarted = false;
+    clearInterval(timerInterval);
+}
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
