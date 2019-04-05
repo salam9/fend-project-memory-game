@@ -91,7 +91,10 @@ function countMoves() {
     movesCounter++;
 }
 function win(){
-    alert("cogra you win");
+    if(event.target.classList.contains('card')){
+        alert("cogra you win");
+    }
+    
 }
 /*
  * set up the event listener for a card. If a card is clicked:
