@@ -79,6 +79,7 @@ h1 {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
+    pointer-events: none;
 }
 
 /*
@@ -112,3 +113,7 @@ h1 {
     margin: auto;
     padding: auto;
 }
+
+#winning {
+    z-index: 1;
+  }

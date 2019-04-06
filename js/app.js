@@ -99,10 +99,16 @@ function countMoves() {
     movesCounter++;
     moves.textContent = movesCounter === 1 ? `${movesCounter} Move` : `${movesCounter} Moves`;
 }
+
+const winningPup = document.querySelector("#winning");
 function win(){
     if(event.target.classList.contains('card')){
         stopTimer();
-        alert("cogra you win");
+        console.log(winningPup.children[1]);
+        winningPup.children[1].textContent += `${secondsLabel.innerText} Seconds and ${minutesLabel.innerText} Minutes`;
+        winningPup.children[2].textContent += `${movesCounter} `;
+        winningPup.style.display = 'inline-block';
+        
     }
     
 }
@@ -156,6 +162,9 @@ function startTimer() {
 
 function stopTimer() {
     timerStarted = false;
+    seconds=secondsLabel.innerHTML.toString();
+    console.log("secondsLabel"+seconds);
+    console.log(secondsLabel.innerHTML);
     clearInterval(timerInterval);
 }
 
