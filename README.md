@@ -12,7 +12,7 @@ This game was built as a Udacity Course project. In the project we uesd HTML, CS
 
 ## How to Load the game
 
-- Clone the **[repo](https://github.com/salam9/fend-project-memory-game)** and open index.html
+- Clone the **[repo](https://github.com/salam9/fend-project-memory-game)** and open index.html by any browser.
 
 ### Resources
 - Many thanks my colleague [bander](https://github.com/bandarAli).
