@@ -1,3 +1,4 @@
+'use strict';
 /*
  * Create a list that holds all of your cards
  */
@@ -14,7 +15,7 @@ document.querySelector('.deck').innerHTML = '';
  */
 
 let fragment = document.createDocumentFragment() ;
-for (card of shuffle(cardsArray)){
+for (let card of shuffle(cardsArray)){
   fragment.appendChild(card) ;
 }
 document.querySelector('.deck').appendChild(fragment);
@@ -51,12 +52,10 @@ const stars = document.querySelector('.stars');
  */
 
 window.onload = dock.addEventListener('click', function(){ 
+ 
     if(event.target.classList.contains('card')){
-        clickedCard=event.target;
+        const clickedCard=event.target;
         countMoves();
-    }
-
-    if(!openedCards.includes(clickedCard)){
         flipCard(clickedCard);
         openedCards.push(clickedCard);
         console.log("openedCards Array Length "+openedCards.length);
@@ -153,8 +152,7 @@ const minutesLabel = document.getElementById("minutes");
 const secondsLabel = document.getElementById("seconds");
 let totalSeconds = 0 , seconds=0, minutes=0;
 
-function setTime()
-{
+function setTime(){
     ++totalSeconds;
     seconds= totalSeconds%60;
     minutes= parseInt(totalSeconds/60);
@@ -165,7 +163,7 @@ function setTime()
 function startTimer() {
     if (!timerStarted) {
         timerStarted = true;
-        timerInterval = setInterval(setTime, 1000);
+        const timerInterval = setInterval(setTime, 1000);
     }
 }
 
