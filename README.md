@@ -1,20 +1,19 @@
-# Memory Game Project
+# UDACITY Memory Game Project
 
-## Table of Contents
+## About project 
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+This game was built as a Udacity Course project. In the project we uesd HTML, CSS styling and JavaScript to display a diynamic Memory Game.
 
-## Instructions
+## How to Play
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+- There are 16 cards, the player should find each two matched cards by flipping them and match the symbol.
+- The player has a timer, a move counter and stars rating to see his score.
+- The player wins when all the cards matched.
 
-To get started, open `js/app.js` and start building out the app's functionality
+## How to Load the game
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+- Clone the **[repo](https://github.com/salam9/fend-project-memory-game)** and open index.html by any browser.
 
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+### Resources
+- Many thanks my colleague [bander](https://github.com/bandarAli).
+- https://github.com/HaithamAlsharif/MemoryGame-Udacity-FEND
