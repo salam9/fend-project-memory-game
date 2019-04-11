@@ -117,3 +117,7 @@ h1 {
 #winning {
     z-index: 1;
   }
+
+.blockClicks {
+    pointer-events: none;
+ }

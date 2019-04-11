@@ -75,14 +75,16 @@ window.onload = dock.addEventListener('click', function(){
 function flipCard(card) {
     card.classList.toggle('open');
     card.classList.toggle('show');
+    card.classList.toggle('blockClicks')
 }
 function comparison(Cards){
-    
+    dock.classList.add('blockClicks');
     if (Cards[Cards.length-1].childNodes[1].classList.value==Cards[Cards.length-2].childNodes[1].classList.value){
         setTimeout(function () {
         match(Cards[Cards.length-1]);
         match(Cards[Cards.length-2]);
         console.log("match");
+        dock.classList.remove('blockClicks');
         }, 500);
     }
     else{
@@ -93,6 +95,7 @@ function comparison(Cards){
         Cards.pop();
         incorrectMoves++
         console.log("not match");
+        dock.classList.remove('blockClicks');
         }, 500);
     }
 }
